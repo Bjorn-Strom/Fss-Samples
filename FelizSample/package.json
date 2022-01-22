@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "dotnet fable watch ./src -o ./public --run parcel public/index.html",
+    "build": "dotnet fable ./src -o ./public && parcel build public/index.html",
+    "clean": "rm -rf dist/ public/*.js public/fable_modules public/.fable"
+  },
+  "devDependencies": {
+    "parcel": "^2.2.1"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
