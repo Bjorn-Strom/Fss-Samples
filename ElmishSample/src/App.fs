@@ -6,7 +6,6 @@ open Elmish.React
 open Fable.React
 open Fable.React.Props
 open Fss
-open Fss.Fable
 
 // Colors
 let blue = hex "0d6efd"

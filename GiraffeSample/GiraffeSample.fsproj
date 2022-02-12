@@ -12,7 +12,7 @@
 
     <ItemGroup>
       <PackageReference Include="Giraffe" Version="5.0.0" />
-      <PackageReference Include="Fss-lib.Giraffe" Version="0.0.1-beta" />
+      <PackageReference Include="Fss-lib.Giraffe" Version="1.0.1" />
     </ItemGroup>
 
 </Project>

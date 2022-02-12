@@ -1,7 +1,6 @@
 ﻿namespace Styles
 
 open Fss
-open Fss.Fable
 
 [<AutoOpen>]
 module Styles =

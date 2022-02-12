@@ -9,7 +9,7 @@
     <Compile Include="Library.fs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fss-lib.Fable" Version="0.0.2-beta" />
+    <PackageReference Include="Fss-lib.Fable" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

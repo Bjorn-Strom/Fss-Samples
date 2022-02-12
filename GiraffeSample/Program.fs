@@ -8,7 +8,6 @@ open Giraffe
 open Giraffe.ViewEngine
 
 open Fss
-open Fss.Giraffe
 
 module Domain =
     type Todo = { Id: Guid; Title: string; Done: bool }
