@@ -115,7 +115,7 @@ let render (model: Model) (dispatch: Msg -> unit) =
                     input
                         [
                             ClassName inputStyle
-                            Placeholder "What needs to be done?"
+                            HTMLAttr.Placeholder "What needs to be done?"
                             Value model.Input
                             OnChange (fun e -> e.Value |> SetInput |> dispatch)
                         ]
