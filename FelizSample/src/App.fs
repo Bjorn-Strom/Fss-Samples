@@ -112,4 +112,6 @@ let App () =
 
 open Browser.Dom
 
-ReactDOM.render(App(), document.getElementById "app")
+
+let root = ReactDOM.createRoot(document.getElementById "app")
+root.render(App())

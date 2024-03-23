@@ -6,10 +6,11 @@
     "clean": "rm -rf dist/ public/*.js public/fable_modules public/.fable"
   },
   "devDependencies": {
-    "parcel": "^2.2.1"
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
   },
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^18.2.0",
+    "react-dom": "18.2.0"
   }
 }
