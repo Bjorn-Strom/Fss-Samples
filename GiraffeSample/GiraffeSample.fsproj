@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <RootNamespace>Giraffe</RootNamespace>
     </PropertyGroup>
 
@@ -11,8 +11,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Giraffe" Version="5.0.0" />
-      <PackageReference Include="Fss-lib.Giraffe" Version="2.0.0" />
+      <PackageReference Include="Giraffe" Version="6.3.0" />
+      <PackageReference Include="Fss-lib.Giraffe" Version="2.2.1" />
     </ItemGroup>
 
 </Project>

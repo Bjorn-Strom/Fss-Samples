@@ -1,11 +1,11 @@
 open System
-open Microsoft.AspNetCore.Builder
-open Microsoft.AspNetCore.Hosting
-open Microsoft.AspNetCore.Http
-open Microsoft.Extensions.Hosting
-open Microsoft.Extensions.DependencyInjection
 open Giraffe
 open Giraffe.ViewEngine
+open Microsoft.AspNetCore.Http
+open Microsoft.AspNetCore.Hosting
+open Microsoft.Extensions.Hosting
+open Microsoft.AspNetCore.Builder
+open Microsoft.Extensions.DependencyInjection
 
 open Fss
 
