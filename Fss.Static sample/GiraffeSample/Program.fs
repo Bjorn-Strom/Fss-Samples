@@ -35,7 +35,7 @@ module Views =
                 title [] [ str "Todo" ]
                 link [ _rel "preconnect"; _href "https://fonts.gstatic.com" ]
                 link [ _rel "stylesheet"; _href "https://fonts.googleapis.com/css2?family=Roboto" ]
-                link [ _rel "stylesheet"; _href "/css/index.css" ]
+                link [ _rel "stylesheet"; _href "/css/styles.css" ]
                 link [ _rel "stylesheet"; _href "/css/fonts.css" ]
             ]
             body [] [
