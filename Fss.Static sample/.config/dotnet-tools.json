@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "fss-lib.builder": {
+      "version": "0.2.0-alpha",
+      "commands": [
+        "Fss.Builder"
+      ]
+    }
+  }
+}
