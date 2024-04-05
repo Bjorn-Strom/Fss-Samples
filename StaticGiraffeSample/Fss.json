@@ -1,0 +1,12 @@
+{
+  "FssSource": {
+      "Path": "Styles",
+      "Name": "Styles",
+      "Namespace": "Index"
+  },
+  "GeneratedProject": {
+    "Path": "GeneratedStyles",
+    "Name": "GeneratedStyles"
+  },
+  "CssOutputPath": "GiraffeSample\\wwwroot\\css\\"
+}

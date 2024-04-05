@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Styles.fs" />
+        <Compile Include="index.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Fss-lib.Static" Version="0.4.0-alpha" />
+    </ItemGroup>
+
+</Project>
