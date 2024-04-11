@@ -7,7 +7,8 @@ module styles =
     let fadeAnimation = "animation-1895258194" 
     let button = "css222609324" 
     let indexCounter = "counter0indexCounter" 
-    let counter = "css415040" 
+    let counter = "css1909515856" 
+    let counterDone = "css-1054769712" 
 
 module fonts =
     let DroidSerifFontFace = "DroidSerifFontFace" 

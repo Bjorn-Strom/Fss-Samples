@@ -70,8 +70,17 @@ let counter =
         AnimationDuration.value (sec 0.4)
         AnimationTimingFunction.ease
         ListStyleType.none
+        Cursor.pointer
+        Hover [
+            BackgroundColor.lightGray
+        ]
         Before [ Color.hex "48f"
                  Content.counter (indexCounter, ". ") ]
+    ]
+
+let counterDone = 
+    fss "counterDone" [
+        TextDecorationLine.lineThrough
     ]
 
 let droidSerifFont =

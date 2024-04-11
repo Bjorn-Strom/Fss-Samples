@@ -9,6 +9,7 @@ let styles = [
     button
     indexCounter
     counter
+    counterDone
 ]
 
 let fonts = [
