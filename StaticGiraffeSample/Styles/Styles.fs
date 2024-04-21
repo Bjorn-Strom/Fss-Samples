@@ -27,7 +27,8 @@ let private formStyle =
     [ Display.inlineBlock
       Padding.value (px 10, px 15)
       FontSize.value (px 18)
-      BorderRadius.value (px 0) ]
+      BorderRadius.value (px 0) 
+    ]
 
 let button = fss "button" [
     yield! formStyle
@@ -37,7 +38,7 @@ let button = fss "button" [
     Width.value (em 10.)
     Hover [
         Cursor.pointer
-        BackgroundColor.value darkBlue 
+        BackgroundColor.value darkBlue
     ]
 ]
 
@@ -65,6 +66,7 @@ let indexCounter = counterStyle "indexCounter" [ CounterLabel "indexCounter" ]
 let counter =
     fss "counter" [
         CounterIncrement.value indexCounter
+
         FontSize.value (px 20)
         AnimationName.value fadeAnimation
         AnimationDuration.value (sec 0.4)
@@ -123,4 +125,5 @@ let header = fss "header" [
 let moderna =
     fss "moderna" [
           Label "Moderna"
-          FontFamily.value modernaFont ]
+          FontFamily.value modernaFont
+    ]

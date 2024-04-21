@@ -3,9 +3,9 @@
   "isRoot": true,
   "tools": {
     "fss-lib.builder": {
-      "version": "0.2.0-alpha",
+      "version": "0.47.0-alpha",
       "commands": [
-        "Fss.Builder"
+        "Fss.Build"
       ]
     }
   }
