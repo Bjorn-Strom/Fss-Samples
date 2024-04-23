@@ -8,5 +8,5 @@
     "Path": "GeneratedStyles",
     "Name": "GeneratedStyles"
   },
-  "CssOutputPath": "server\\wwwroot\\css\\"
+  "CssOutputPath": "Server/wwwroot/css/"
 }
