@@ -85,6 +85,7 @@ module Views =
                 title [] [ str "Taut" ]
                 link [ _rel "stylesheet"; _href "/css/styles.css" ]
                 script [ _src "https://unpkg.com/htmx.org@1.9.11"; _integrity "sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0"; _crossorigin "anonymous"] []
+                script [ _src "https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js"] []
             ]
             body [ _class Styles.body ] _body
         ]
@@ -120,19 +121,21 @@ module Views =
                 str message.Message
             ]
         ]
-    
+
     let messages (channel_id: Guid) = 
         let current_channel = List.tryFind (fun (c: Domain.Channel) -> c.Id = channel_id) Fakabase.channels
         match current_channel with
         | Some channel -> 
-            div [ _id "messages"; _class Styles.messages ] (List.map message channel.Messages)
+           channel.Messages
+           |> List.map message
+           |> List.map RenderView.AsString.htmlNode
+           |> String.concat ""
         | None ->
-            div [ _id "messages"; _class Styles.messages ] []
-
-
+            ""
+    
     let channel (channel_id: Guid) =
         let current_channel = List.tryFind (fun (c: Domain.Channel) -> c.Id = channel_id) Fakabase.channels
-        div [ _id "channel"; _class Styles.channel; _hxGet $"/messages/{channel_id}"; _hxTrigger (HxTrigger.Every "5s"); _hxSwap HxSwap.InnerHtml; _hxTarget "#messages" ] [
+        div [ _id "channel"; _class Styles.channel ] [
             match current_channel with
             | Some channel ->
                 div [ _class Styles.channel_info ]
@@ -144,7 +147,7 @@ module Views =
                             str $"{Fakabase.count_users_in_channel channel} members" 
                         ]
                     ]
-                div [ _id "messages"; _class Styles.messages ] (List.map message channel.Messages)
+                div [ _hxExt "sse"; KeyValue("sse-connect", $"/messages/{channel_id}"); KeyValue("sse-swap", "message");  _class Styles.messages ] (List.map message channel.Messages)
                 form [ _class Styles.chat; _hxPost $"/chat/{channel_id}"; _hxTarget "#channel"; _hxSwap HxSwap.OuterHtml;(_hxOnHxEvent HxEvent.AfterRequest "if(event.detail.successfull) this.reset()") ] [
                     label [ _class Styles.label ] [
                         str "Name"
@@ -179,7 +182,7 @@ module Views =
             ]
         ]
 
-module Actions =
+module Handlers =
     let create_message id =
         fun next (ctx: HttpContext) -> 
             task {
@@ -192,17 +195,34 @@ module Actions =
                 return! (ctx.WriteHtmlViewAsync (Views.channel id))
             }
 
+    let message_stream (id: Guid) =
+        fun next (ctx: HttpContext) ->
+            task {
+                ctx.Response.ContentType <- "text/event-stream"
+                ctx.Response.Headers.Add("CacheControl", "no-cache")
+                ctx.Response.Headers.Add("Connection", "keep-alive")
+
+
+                while (not ctx.RequestAborted.IsCancellationRequested) do
+                    let messages = Views.messages id
+                    do! ctx.Response.WriteAsync($"event: message\ndata: {messages}\n\n")
+                    do! ctx.Response.Body.FlushAsync()
+
+                    do! System.Threading.Tasks.Task.Delay(1000)
+
+                return! text "" next ctx
+            }
+
 let routes =
     choose [ 
-        POST >=> routef "/chat/%O" (fun id -> Actions.create_message id)
+        POST >=> routef "/chat/%O" (fun id -> Handlers.create_message id)
         //PUT >=> routef "/todo/%O" (fun guid -> Views.updateTodo guid)
         GET >=> choose [
             route "/" >=> warbler (fun _ -> htmlView (Views.app Fakabase.workspace.DefaultChannel.Id))
 
             route "/channel-list" >=> warbler (fun _ -> htmlView (Views.channel_list ()))
             routef "/channel/%O" (fun id -> htmlView (Views.channel id))
-            routef "/messages/%O" (fun id -> htmlView (Views.messages id))
-
+            routef "/messages/%O" (fun id -> (Handlers.message_stream id))
         ]
     ]
 
